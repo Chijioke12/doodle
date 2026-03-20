@@ -1,0 +1,14 @@
+{
+  "name": "Doodle Jump",
+  "description": "A Doodle Jump clone for KaiOS",
+  "launch_path": "/index.html",
+  "icons": {
+    "128": "/doodlejump.png"
+  },
+  "developer": {
+    "name": "AI Studio",
+    "url": "https://example.com"
+  },
+  "type": "web",
+  "fullscreen": "true"
+}

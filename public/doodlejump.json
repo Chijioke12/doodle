@@ -1,0 +1,1464 @@
+{
+  "meta": {
+    "app": "Doodle Jump Phaser 3 Spritesheet",
+    "version": "1.0.0",
+    "author": "Claude (Anthropic)",
+    "created": "2026-03-20",
+    "license": "Free for game development use",
+    "image": "doodlejump.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 512,
+      "h": 512
+    },
+    "scale": "1",
+    "resolution": "1x",
+    "pixelArt": true,
+    "phaser3": {
+      "loadAs": "atlas",
+      "preload": "this.load.atlas('doodlejump', 'doodlejump.png', 'doodlejump.json')",
+      "baseResolution": {
+        "w": 360,
+        "h": 640
+      },
+      "scaleMode": "Phaser.Scale.FIT"
+    },
+    "groups": {
+      "player": [
+        "doodler_jump",
+        "doodler_left",
+        "doodler_fall"
+      ],
+      "platforms": [
+        "platform_normal",
+        "platform_moving",
+        "platform_breakable",
+        "platform_broken",
+        "platform_spring"
+      ],
+      "springs": [
+        "spring_normal",
+        "spring_compressed",
+        "spring_extended"
+      ],
+      "enemies": [
+        "monster_basic",
+        "monster_ufo"
+      ],
+      "powerups": [
+        "jetpack",
+        "hat_propeller",
+        "shield"
+      ],
+      "collectibles": [
+        "coin",
+        "bullet"
+      ],
+      "ui": [
+        "ui_gameover",
+        "ui_score_bg",
+        "digit_0",
+        "digit_1",
+        "digit_2",
+        "digit_3",
+        "digit_4",
+        "digit_5",
+        "digit_6",
+        "digit_7",
+        "digit_8",
+        "digit_9"
+      ],
+      "background": [
+        "bg_tile",
+        "stars_bg"
+      ],
+      "particles": [
+        "particle_puff",
+        "particle_score"
+      ]
+    }
+  },
+  "frames": {
+    "doodler_jump": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "meta": {
+        "group": "player",
+        "description": "Doodler character jumping / moving right. Default state.",
+        "anchor": {
+          "x": 0.5,
+          "y": 1.0
+        },
+        "physicsBody": {
+          "type": "rectangle",
+          "x": 10,
+          "y": 16,
+          "w": 44,
+          "h": 48
+        },
+        "usage": "Set as default frame. Flip horizontally for left movement.",
+        "sfx": "jump",
+        "tags": [
+          "player",
+          "jump",
+          "right",
+          "animated"
+        ]
+      }
+    },
+    "doodler_left": {
+      "frame": {
+        "x": 64,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "meta": {
+        "group": "player",
+        "description": "Doodler facing left. Mirror of doodler_jump.",
+        "anchor": {
+          "x": 0.5,
+          "y": 1.0
+        },
+        "physicsBody": {
+          "type": "rectangle",
+          "x": 10,
+          "y": 16,
+          "w": 44,
+          "h": 48
+        },
+        "usage": "Swap to this frame when horizontal velocity < 0.",
+        "sfx": "jump",
+        "tags": [
+          "player",
+          "jump",
+          "left"
+        ]
+      }
+    },
+    "doodler_fall": {
+      "frame": {
+        "x": 128,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "meta": {
+        "group": "player",
+        "description": "Doodler falling / dead. Sad face, arms outstretched downward.",
+        "anchor": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "physicsBody": {
+          "type": "rectangle",
+          "x": 10,
+          "y": 16,
+          "w": 44,
+          "h": 48
+        },
+        "usage": "Swap to on game over or when falling off screen.",
+        "sfx": "game_over",
+        "tags": [
+          "player",
+          "fall",
+          "dead",
+          "gameover"
+        ]
+      }
+    },
+    "platform_normal": {
+      "frame": {
+        "x": 0,
+        "y": 64,
+        "w": 96,
+        "h": 18
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 18
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 18
+      },
+      "meta": {
+        "group": "platforms",
+        "description": "Standard solid green platform. Never moves or breaks.",
+        "anchor": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "physicsBody": {
+          "type": "rectangle",
+          "x": 3,
+          "y": 0,
+          "w": 90,
+          "h": 8
+        },
+        "collisionEdge": "top",
+        "color": "#6ad645",
+        "usage": "Most common platform. Spawn frequently at lower heights.",
+        "tags": [
+          "platform",
+          "static",
+          "solid",
+          "common"
+        ]
+      }
+    },
+    "platform_moving": {
+      "frame": {
+        "x": 0,
+        "y": 86,
+        "w": 96,
+        "h": 18
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 18
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 18
+      },
+      "meta": {
+        "group": "platforms",
+        "description": "Blue platform that slides horizontally. Arrows indicate direction.",
+        "anchor": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "physicsBody": {
+          "type": "rectangle",
+          "x": 3,
+          "y": 0,
+          "w": 90,
+          "h": 8
+        },
+        "collisionEdge": "top",
+        "color": "#4aa0e8",
+        "behavior": {
+          "type": "horizontal",
+          "speedRange": [
+            60,
+            120
+          ],
+          "bounceOnEdge": true
+        },
+        "usage": "Introduce after score 2000. Increases lateral challenge.",
+        "tags": [
+          "platform",
+          "moving",
+          "horizontal",
+          "blue"
+        ]
+      }
+    },
+    "platform_breakable": {
+      "frame": {
+        "x": 0,
+        "y": 108,
+        "w": 96,
+        "h": 18
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 18
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 18
+      },
+      "meta": {
+        "group": "platforms",
+        "description": "Brown cracked platform. Breaks apart on first landing.",
+        "anchor": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "physicsBody": {
+          "type": "rectangle",
+          "x": 3,
+          "y": 0,
+          "w": 90,
+          "h": 8
+        },
+        "collisionEdge": "top",
+        "color": "#c8884a",
+        "behavior": {
+          "type": "breakable",
+          "breaksAfterLandings": 1,
+          "breakAnimation": "platform_broken"
+        },
+        "usage": "Swap to platform_broken immediately on player contact, then destroy after 400ms.",
+        "sfx": "platform_break",
+        "tags": [
+          "platform",
+          "breakable",
+          "brown",
+          "destructible"
+        ]
+      }
+    },
+    "platform_broken": {
+      "frame": {
+        "x": 0,
+        "y": 130,
+        "w": 96,
+        "h": 18
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 18
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 18
+      },
+      "meta": {
+        "group": "platforms",
+        "description": "Two falling halves after a breakable platform shatters.",
+        "anchor": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "physicsBody": null,
+        "color": "#b07838",
+        "behavior": {
+          "type": "falling",
+          "gravity": true,
+          "destroyAfterMs": 600
+        },
+        "usage": "Purely visual \u2014 no physics body. Tween the halves apart and fade out.",
+        "tags": [
+          "platform",
+          "broken",
+          "falling",
+          "vfx"
+        ]
+      }
+    },
+    "platform_spring": {
+      "frame": {
+        "x": 0,
+        "y": 152,
+        "w": 96,
+        "h": 18
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 18
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 18
+      },
+      "meta": {
+        "group": "platforms",
+        "description": "Green platform with a spring mounted on top. Overlaid with spring_normal sprite.",
+        "anchor": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "physicsBody": {
+          "type": "rectangle",
+          "x": 3,
+          "y": 0,
+          "w": 90,
+          "h": 8
+        },
+        "collisionEdge": "top",
+        "color": "#6ad645",
+        "behavior": {
+          "type": "spring",
+          "launchVelocity": -1100,
+          "springSprite": "spring_normal"
+        },
+        "usage": "Render spring_normal on top at (platform.x+36, platform.y-14). Animate spring_compressed on contact.",
+        "sfx": "super_jump",
+        "tags": [
+          "platform",
+          "spring",
+          "boost",
+          "launch"
+        ]
+      }
+    },
+    "spring_normal": {
+      "frame": {
+        "x": 128,
+        "y": 64,
+        "w": 24,
+        "h": 28
+      },
+      "sourceSize": {
+        "w": 24,
+        "h": 28
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 24,
+        "h": 28
+      },
+      "meta": {
+        "group": "springs",
+        "description": "Spring at rest. 4 coils, red caps.",
+        "anchor": {
+          "x": 0.5,
+          "y": 1.0
+        },
+        "animationSequence": [
+          "spring_normal",
+          "spring_compressed",
+          "spring_extended"
+        ],
+        "usage": "Place on platform_spring. Cycle through animation frames on player contact.",
+        "tags": [
+          "spring",
+          "rest",
+          "red"
+        ]
+      }
+    },
+    "spring_compressed": {
+      "frame": {
+        "x": 128,
+        "y": 192,
+        "w": 24,
+        "h": 20
+      },
+      "sourceSize": {
+        "w": 24,
+        "h": 20
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 24,
+        "h": 20
+      },
+      "meta": {
+        "group": "springs",
+        "description": "Spring squished on player landing. 2 coils, shorter height.",
+        "anchor": {
+          "x": 0.5,
+          "y": 1.0
+        },
+        "animationSequence": [
+          "spring_normal",
+          "spring_compressed",
+          "spring_extended"
+        ],
+        "frameDurationMs": 60,
+        "usage": "Show for 60ms on contact, then immediately swap to spring_extended.",
+        "tags": [
+          "spring",
+          "compressed",
+          "contact"
+        ]
+      }
+    },
+    "spring_extended": {
+      "frame": {
+        "x": 156,
+        "y": 64,
+        "w": 24,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 24,
+        "h": 40
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 24,
+        "h": 40
+      },
+      "meta": {
+        "group": "springs",
+        "description": "Spring fully extended launching player upward. 6 coils.",
+        "anchor": {
+          "x": 0.5,
+          "y": 1.0
+        },
+        "animationSequence": [
+          "spring_normal",
+          "spring_compressed",
+          "spring_extended"
+        ],
+        "frameDurationMs": 80,
+        "usage": "Show for 80ms then return to spring_normal. Apply super_jump sfx on this frame.",
+        "sfx": "super_jump",
+        "tags": [
+          "spring",
+          "extended",
+          "launch"
+        ]
+      }
+    },
+    "monster_basic": {
+      "frame": {
+        "x": 192,
+        "y": 64,
+        "w": 48,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      },
+      "meta": {
+        "group": "enemies",
+        "description": "Red spiky monster that sits on platforms. Kills player on contact.",
+        "anchor": {
+          "x": 0.5,
+          "y": 1.0
+        },
+        "physicsBody": {
+          "type": "circle",
+          "cx": 24,
+          "cy": 28,
+          "r": 18
+        },
+        "behavior": {
+          "type": "stationary",
+          "killsPlayer": true,
+          "canBeShot": true
+        },
+        "scoreValue": 100,
+        "usage": "Place on platform_normal. Destroy on bullet contact (monster_kill sfx). Kills player on body overlap.",
+        "sfx": {
+          "onKill": "monster_kill",
+          "onHitPlayer": "monster_hit"
+        },
+        "tags": [
+          "enemy",
+          "monster",
+          "stationary",
+          "dangerous"
+        ]
+      }
+    },
+    "monster_ufo": {
+      "frame": {
+        "x": 248,
+        "y": 64,
+        "w": 56,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 56,
+        "h": 40
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 56,
+        "h": 40
+      },
+      "meta": {
+        "group": "enemies",
+        "description": "UFO that glides horizontally across the screen. Alien visible through dome.",
+        "anchor": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "physicsBody": {
+          "type": "ellipse",
+          "cx": 28,
+          "cy": 30,
+          "rx": 24,
+          "ry": 8
+        },
+        "behavior": {
+          "type": "horizontal",
+          "speedRange": [
+            80,
+            140
+          ],
+          "bounceOnEdge": true,
+          "altitude": "random",
+          "killsPlayer": true,
+          "canBeShot": true
+        },
+        "scoreValue": 200,
+        "usage": "Spawn at random y within visible area. Floats independent of platforms.",
+        "sfx": {
+          "onKill": "monster_kill",
+          "onHitPlayer": "monster_hit"
+        },
+        "tags": [
+          "enemy",
+          "ufo",
+          "flying",
+          "horizontal"
+        ]
+      }
+    },
+    "jetpack": {
+      "frame": {
+        "x": 160,
+        "y": 112,
+        "w": 32,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 32,
+        "h": 40
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 32,
+        "h": 40
+      },
+      "meta": {
+        "group": "powerups",
+        "description": "Jetpack item. Attaches to player back and propels upward with flame exhaust.",
+        "anchor": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "physicsBody": {
+          "type": "rectangle",
+          "x": 4,
+          "y": 4,
+          "w": 24,
+          "h": 32
+        },
+        "behavior": {
+          "type": "pickup",
+          "effect": "jetpack",
+          "durationMs": 3000,
+          "launchVelocity": -900,
+          "continuous": true
+        },
+        "usage": "Offset render to (player.x - 4, player.y) when active. Play jetpack sfx looped.",
+        "sfx": {
+          "onPickup": "powerup",
+          "onActive": "jetpack"
+        },
+        "tags": [
+          "powerup",
+          "jetpack",
+          "flight",
+          "rare"
+        ]
+      }
+    },
+    "hat_propeller": {
+      "frame": {
+        "x": 160,
+        "y": 164,
+        "w": 32,
+        "h": 20
+      },
+      "sourceSize": {
+        "w": 32,
+        "h": 20
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 32,
+        "h": 20
+      },
+      "meta": {
+        "group": "powerups",
+        "description": "Propeller hat power-up. Sits on player head and slows descent.",
+        "anchor": {
+          "x": 0.5,
+          "y": 1.0
+        },
+        "behavior": {
+          "type": "pickup",
+          "effect": "propeller",
+          "durationMs": 5000,
+          "gravityMultiplier": 0.4
+        },
+        "usage": "Render at (player.x, player.y - 32) when active. Tween rotation on propeller blade.",
+        "sfx": {
+          "onPickup": "powerup"
+        },
+        "tags": [
+          "powerup",
+          "hat",
+          "propeller",
+          "glide"
+        ]
+      }
+    },
+    "shield": {
+      "frame": {
+        "x": 200,
+        "y": 112,
+        "w": 48,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      },
+      "meta": {
+        "group": "powerups",
+        "description": "Translucent blue bubble shield. Renders centered over the player. Blocks one monster hit.",
+        "anchor": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "behavior": {
+          "type": "pickup",
+          "effect": "shield",
+          "durationMs": 8000,
+          "blocksHits": 1
+        },
+        "usage": "Render at player center with alpha 0.7. Pulse scale between 0.95\u20131.05. Remove on hit.",
+        "sfx": {
+          "onPickup": "shield",
+          "onBlock": "shield"
+        },
+        "tags": [
+          "powerup",
+          "shield",
+          "defense",
+          "overlay"
+        ]
+      }
+    },
+    "coin": {
+      "frame": {
+        "x": 128,
+        "y": 116,
+        "w": 24,
+        "h": 24
+      },
+      "sourceSize": {
+        "w": 24,
+        "h": 24
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 24,
+        "h": 24
+      },
+      "meta": {
+        "group": "collectibles",
+        "description": "Golden coin collectible. Tween scaleX 1\u21920\u21921 to simulate spinning.",
+        "anchor": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "physicsBody": {
+          "type": "circle",
+          "cx": 12,
+          "cy": 12,
+          "r": 10
+        },
+        "scoreValue": 50,
+        "usage": "this.tweens.add({ targets: coin, scaleX: 0, yoyo: true, repeat: -1, duration: 300 })",
+        "sfx": "coin",
+        "tags": [
+          "collectible",
+          "coin",
+          "score",
+          "gold"
+        ]
+      }
+    },
+    "bullet": {
+      "frame": {
+        "x": 128,
+        "y": 164,
+        "w": 20,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 20,
+        "h": 10
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 20,
+        "h": 10
+      },
+      "meta": {
+        "group": "collectibles",
+        "description": "Projectile fired upward from player nose. Orange with white tip, orange trail.",
+        "anchor": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "physicsBody": {
+          "type": "rectangle",
+          "x": 2,
+          "y": 2,
+          "w": 16,
+          "h": 6
+        },
+        "behavior": {
+          "type": "projectile",
+          "velocityY": -900,
+          "destroyOnEnemyHit": true,
+          "destroyOnScreenExit": true
+        },
+        "usage": "Spawn at player nose position. Move upward at -900px/s. Overlap check vs enemies each frame.",
+        "sfx": "shoot",
+        "tags": [
+          "projectile",
+          "bullet",
+          "weapon",
+          "upward"
+        ]
+      }
+    },
+    "ui_gameover": {
+      "frame": {
+        "x": 0,
+        "y": 240,
+        "w": 200,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 40
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 40
+      },
+      "meta": {
+        "group": "ui",
+        "description": "Red 'GAME OVER' banner. Display centered on screen after player death.",
+        "anchor": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "usage": "Tween alpha 0\u21921 over 500ms, then scale 0.95\u21921.05 pulse. Show restart button below.",
+        "sfx": "game_over",
+        "tags": [
+          "ui",
+          "gameover",
+          "banner",
+          "overlay"
+        ]
+      }
+    },
+    "ui_score_bg": {
+      "frame": {
+        "x": 0,
+        "y": 284,
+        "w": 120,
+        "h": 30
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 30
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 30
+      },
+      "meta": {
+        "group": "ui",
+        "description": "Semi-transparent dark pill background for score display. Gold border.",
+        "anchor": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "usage": "Fix to camera top-center. Render digit_* frames on top for live score.",
+        "tags": [
+          "ui",
+          "score",
+          "hud",
+          "background"
+        ]
+      }
+    },
+    "digit_0": {
+      "frame": {
+        "x": 0,
+        "y": 196,
+        "w": 18,
+        "h": 20
+      },
+      "sourceSize": {
+        "w": 18,
+        "h": 20
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 18,
+        "h": 20
+      },
+      "meta": {
+        "group": "ui",
+        "description": "Score digit '0'. Gold with dark outline, monospace style.",
+        "anchor": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "usage": "Display score by splitting integer into digits and rendering each digit_N frame spaced 18px apart.",
+        "charValue": 0,
+        "tags": [
+          "ui",
+          "digit",
+          "score",
+          "font"
+        ]
+      }
+    },
+    "digit_1": {
+      "frame": {
+        "x": 18,
+        "y": 196,
+        "w": 18,
+        "h": 20
+      },
+      "sourceSize": {
+        "w": 18,
+        "h": 20
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 18,
+        "h": 20
+      },
+      "meta": {
+        "group": "ui",
+        "description": "Score digit '1'. Gold with dark outline, monospace style.",
+        "anchor": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "usage": "Display score by splitting integer into digits and rendering each digit_N frame spaced 18px apart.",
+        "charValue": 1,
+        "tags": [
+          "ui",
+          "digit",
+          "score",
+          "font"
+        ]
+      }
+    },
+    "digit_2": {
+      "frame": {
+        "x": 36,
+        "y": 196,
+        "w": 18,
+        "h": 20
+      },
+      "sourceSize": {
+        "w": 18,
+        "h": 20
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 18,
+        "h": 20
+      },
+      "meta": {
+        "group": "ui",
+        "description": "Score digit '2'. Gold with dark outline, monospace style.",
+        "anchor": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "usage": "Display score by splitting integer into digits and rendering each digit_N frame spaced 18px apart.",
+        "charValue": 2,
+        "tags": [
+          "ui",
+          "digit",
+          "score",
+          "font"
+        ]
+      }
+    },
+    "digit_3": {
+      "frame": {
+        "x": 54,
+        "y": 196,
+        "w": 18,
+        "h": 20
+      },
+      "sourceSize": {
+        "w": 18,
+        "h": 20
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 18,
+        "h": 20
+      },
+      "meta": {
+        "group": "ui",
+        "description": "Score digit '3'. Gold with dark outline, monospace style.",
+        "anchor": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "usage": "Display score by splitting integer into digits and rendering each digit_N frame spaced 18px apart.",
+        "charValue": 3,
+        "tags": [
+          "ui",
+          "digit",
+          "score",
+          "font"
+        ]
+      }
+    },
+    "digit_4": {
+      "frame": {
+        "x": 72,
+        "y": 196,
+        "w": 18,
+        "h": 20
+      },
+      "sourceSize": {
+        "w": 18,
+        "h": 20
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 18,
+        "h": 20
+      },
+      "meta": {
+        "group": "ui",
+        "description": "Score digit '4'. Gold with dark outline, monospace style.",
+        "anchor": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "usage": "Display score by splitting integer into digits and rendering each digit_N frame spaced 18px apart.",
+        "charValue": 4,
+        "tags": [
+          "ui",
+          "digit",
+          "score",
+          "font"
+        ]
+      }
+    },
+    "digit_5": {
+      "frame": {
+        "x": 0,
+        "y": 218,
+        "w": 18,
+        "h": 20
+      },
+      "sourceSize": {
+        "w": 18,
+        "h": 20
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 18,
+        "h": 20
+      },
+      "meta": {
+        "group": "ui",
+        "description": "Score digit '5'. Gold with dark outline, monospace style.",
+        "anchor": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "usage": "Display score by splitting integer into digits and rendering each digit_N frame spaced 18px apart.",
+        "charValue": 5,
+        "tags": [
+          "ui",
+          "digit",
+          "score",
+          "font"
+        ]
+      }
+    },
+    "digit_6": {
+      "frame": {
+        "x": 18,
+        "y": 218,
+        "w": 18,
+        "h": 20
+      },
+      "sourceSize": {
+        "w": 18,
+        "h": 20
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 18,
+        "h": 20
+      },
+      "meta": {
+        "group": "ui",
+        "description": "Score digit '6'. Gold with dark outline, monospace style.",
+        "anchor": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "usage": "Display score by splitting integer into digits and rendering each digit_N frame spaced 18px apart.",
+        "charValue": 6,
+        "tags": [
+          "ui",
+          "digit",
+          "score",
+          "font"
+        ]
+      }
+    },
+    "digit_7": {
+      "frame": {
+        "x": 36,
+        "y": 218,
+        "w": 18,
+        "h": 20
+      },
+      "sourceSize": {
+        "w": 18,
+        "h": 20
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 18,
+        "h": 20
+      },
+      "meta": {
+        "group": "ui",
+        "description": "Score digit '7'. Gold with dark outline, monospace style.",
+        "anchor": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "usage": "Display score by splitting integer into digits and rendering each digit_N frame spaced 18px apart.",
+        "charValue": 7,
+        "tags": [
+          "ui",
+          "digit",
+          "score",
+          "font"
+        ]
+      }
+    },
+    "digit_8": {
+      "frame": {
+        "x": 54,
+        "y": 218,
+        "w": 18,
+        "h": 20
+      },
+      "sourceSize": {
+        "w": 18,
+        "h": 20
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 18,
+        "h": 20
+      },
+      "meta": {
+        "group": "ui",
+        "description": "Score digit '8'. Gold with dark outline, monospace style.",
+        "anchor": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "usage": "Display score by splitting integer into digits and rendering each digit_N frame spaced 18px apart.",
+        "charValue": 8,
+        "tags": [
+          "ui",
+          "digit",
+          "score",
+          "font"
+        ]
+      }
+    },
+    "digit_9": {
+      "frame": {
+        "x": 72,
+        "y": 218,
+        "w": 18,
+        "h": 20
+      },
+      "sourceSize": {
+        "w": 18,
+        "h": 20
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 18,
+        "h": 20
+      },
+      "meta": {
+        "group": "ui",
+        "description": "Score digit '9'. Gold with dark outline, monospace style.",
+        "anchor": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "usage": "Display score by splitting integer into digits and rendering each digit_N frame spaced 18px apart.",
+        "charValue": 9,
+        "tags": [
+          "ui",
+          "digit",
+          "score",
+          "font"
+        ]
+      }
+    },
+    "bg_tile": {
+      "frame": {
+        "x": 0,
+        "y": 320,
+        "w": 128,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 128
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 128,
+        "h": 128
+      },
+      "meta": {
+        "group": "background",
+        "description": "Tileable night sky gradient (dark navy\u2192blue). Subtle grid lines. Seamlessly repeatable on both axes.",
+        "anchor": {
+          "x": 0,
+          "y": 0
+        },
+        "tileable": true,
+        "usage": "this.add.tileSprite(0, 0, 360, 640, 'doodlejump', 'bg_tile').setOrigin(0,0). Scroll y at 0.3x player speed for parallax.",
+        "parallaxFactor": 0.3,
+        "tags": [
+          "background",
+          "sky",
+          "tile",
+          "parallax",
+          "night"
+        ]
+      }
+    },
+    "stars_bg": {
+      "frame": {
+        "x": 320,
+        "y": 84,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "meta": {
+        "group": "background",
+        "description": "8 white/cream stars of varying sizes. Overlay on bg_tile for depth.",
+        "anchor": {
+          "x": 0,
+          "y": 0
+        },
+        "tileable": true,
+        "usage": "Scatter multiple instances across background layer. Scroll at 0.15x for deeper parallax.",
+        "parallaxFactor": 0.15,
+        "tags": [
+          "background",
+          "stars",
+          "parallax",
+          "decoration"
+        ]
+      }
+    },
+    "particle_puff": {
+      "frame": {
+        "x": 320,
+        "y": 64,
+        "w": 16,
+        "h": 16
+      },
+      "sourceSize": {
+        "w": 16,
+        "h": 16
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 16,
+        "h": 16
+      },
+      "meta": {
+        "group": "particles",
+        "description": "White/light-blue radial puff for jump landing dust effect.",
+        "anchor": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "particleConfig": {
+          "quantity": 4,
+          "speed": {
+            "min": 30,
+            "max": 80
+          },
+          "angle": {
+            "min": 200,
+            "max": 340
+          },
+          "scale": {
+            "start": 1.0,
+            "end": 0
+          },
+          "alpha": {
+            "start": 0.8,
+            "end": 0
+          },
+          "lifespan": 350,
+          "gravityY": 80
+        },
+        "usage": "Emit from platform contact point on each landing.",
+        "tags": [
+          "particle",
+          "puff",
+          "jump",
+          "vfx",
+          "dust"
+        ]
+      }
+    },
+    "particle_score": {
+      "frame": {
+        "x": 340,
+        "y": 64,
+        "w": 16,
+        "h": 16
+      },
+      "sourceSize": {
+        "w": 16,
+        "h": 16
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 16,
+        "h": 16
+      },
+      "meta": {
+        "group": "particles",
+        "description": "Golden radial glow burst for score popups and coin collection.",
+        "anchor": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "particleConfig": {
+          "quantity": 6,
+          "speed": {
+            "min": 40,
+            "max": 100
+          },
+          "angle": {
+            "min": 0,
+            "max": 360
+          },
+          "scale": {
+            "start": 0.8,
+            "end": 0
+          },
+          "alpha": {
+            "start": 1.0,
+            "end": 0
+          },
+          "lifespan": 400,
+          "gravityY": -30
+        },
+        "usage": "Emit from coin/score pickup position. Also use for high score celebration.",
+        "tags": [
+          "particle",
+          "score",
+          "gold",
+          "vfx",
+          "glow"
+        ]
+      }
+    }
+  }
+}

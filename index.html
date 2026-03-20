@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Google AI Studio App</title>
+  </head>
+  <body>
+    <div id="phone-container">
+      <svg id="phone-svg" viewBox="0 0 320 700" width="320" height="700" xmlns="http://www.w3.org/2000/svg">
+        <!-- Phone Body -->
+        <rect x="10" y="10" width="300" height="680" rx="30" fill="#222" stroke="#444" stroke-width="4"/>
+        <!-- Speaker -->
+        <rect x="130" y="30" width="60" height="6" rx="3" fill="#111" />
+        <!-- Screen Bezel -->
+        <rect x="30" y="50" width="260" height="340" rx="10" fill="#000" />
+        
+        <!-- D-Pad Background -->
+        <circle cx="160" cy="460" r="45" fill="#1a1a1a" stroke="#333" stroke-width="2"/>
+        
+        <!-- D-Pad Buttons -->
+        <path d="M 140 435 L 160 415 L 180 435 L 160 445 Z" fill="#333" id="btn-up" class="phone-btn" />
+        <path d="M 140 485 L 160 505 L 180 485 L 160 475 Z" fill="#333" id="btn-down" class="phone-btn" />
+        <path d="M 135 440 L 115 460 L 135 480 L 145 460 Z" fill="#333" id="btn-left" class="phone-btn" />
+        <path d="M 185 440 L 205 460 L 185 480 L 175 460 Z" fill="#333" id="btn-right" class="phone-btn" />
+        
+        <!-- Center (OK) -->
+        <circle cx="160" cy="460" r="22" fill="#444" id="btn-enter" class="phone-btn" />
+        
+        <!-- Soft Keys -->
+        <rect x="40" y="415" width="50" height="25" rx="5" fill="#333" class="phone-btn" />
+        <line x1="55" y1="427" x2="75" y2="427" stroke="#fff" stroke-width="2" pointer-events="none"/>
+        <rect x="230" y="415" width="50" height="25" rx="5" fill="#333" class="phone-btn" />
+        <line x1="245" y1="427" x2="265" y2="427" stroke="#fff" stroke-width="2" pointer-events="none"/>
+        
+        <!-- Call / End Call -->
+        <rect x="40" y="460" width="50" height="30" rx="15" fill="#2d4a22" class="phone-btn" />
+        <path d="M 55 475 C 55 470, 75 470, 75 475" stroke="#fff" stroke-width="2" fill="none" pointer-events="none"/>
+        <rect x="230" y="460" width="50" height="30" rx="15" fill="#4a2222" class="phone-btn" />
+        <path d="M 245 470 C 245 475, 265 475, 265 470" stroke="#fff" stroke-width="2" fill="none" pointer-events="none"/>
+
+        <!-- Numpad -->
+        <g class="numpad" fill="#111" stroke="#222" stroke-width="1">
+          <rect x="40" y="520" width="70" height="35" rx="8" class="phone-btn" />
+          <text x="75" y="543" fill="#fff" font-family="sans-serif" font-size="16" text-anchor="middle" pointer-events="none">1</text>
+          <rect x="125" y="520" width="70" height="35" rx="8" class="phone-btn" />
+          <text x="160" y="543" fill="#fff" font-family="sans-serif" font-size="16" text-anchor="middle" pointer-events="none">2</text>
+          <rect x="210" y="520" width="70" height="35" rx="8" class="phone-btn" />
+          <text x="245" y="543" fill="#fff" font-family="sans-serif" font-size="16" text-anchor="middle" pointer-events="none">3</text>
+          
+          <rect x="40" y="565" width="70" height="35" rx="8" class="phone-btn" />
+          <text x="75" y="588" fill="#fff" font-family="sans-serif" font-size="16" text-anchor="middle" pointer-events="none">4</text>
+          <rect x="125" y="565" width="70" height="35" rx="8" class="phone-btn" />
+          <text x="160" y="588" fill="#fff" font-family="sans-serif" font-size="16" text-anchor="middle" pointer-events="none">5</text>
+          <rect x="210" y="565" width="70" height="35" rx="8" class="phone-btn" />
+          <text x="245" y="588" fill="#fff" font-family="sans-serif" font-size="16" text-anchor="middle" pointer-events="none">6</text>
+          
+          <rect x="40" y="610" width="70" height="35" rx="8" class="phone-btn" />
+          <text x="75" y="633" fill="#fff" font-family="sans-serif" font-size="16" text-anchor="middle" pointer-events="none">7</text>
+          <rect x="125" y="610" width="70" height="35" rx="8" class="phone-btn" />
+          <text x="160" y="633" fill="#fff" font-family="sans-serif" font-size="16" text-anchor="middle" pointer-events="none">8</text>
+          <rect x="210" y="610" width="70" height="35" rx="8" class="phone-btn" />
+          <text x="245" y="633" fill="#fff" font-family="sans-serif" font-size="16" text-anchor="middle" pointer-events="none">9</text>
+          
+          <rect x="40" y="655" width="70" height="35" rx="8" class="phone-btn" />
+          <text x="75" y="678" fill="#fff" font-family="sans-serif" font-size="16" text-anchor="middle" pointer-events="none">*</text>
+          <rect x="125" y="655" width="70" height="35" rx="8" class="phone-btn" />
+          <text x="160" y="678" fill="#fff" font-family="sans-serif" font-size="16" text-anchor="middle" pointer-events="none">0</text>
+          <rect x="210" y="655" width="70" height="35" rx="8" class="phone-btn" />
+          <text x="245" y="678" fill="#fff" font-family="sans-serif" font-size="16" text-anchor="middle" pointer-events="none">#</text>
+        </g>
+      </svg>
+      <div id="app"></div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
+
